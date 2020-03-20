@@ -26,6 +26,41 @@ limitations under the License.
     <artifactId>shared-configuration</artifactId>
     <version>1.0.12</version>
   </parent>
+      
+      <distributionManagement>
+    <snapshotRepository>
+      <id>artifact-registry</id>
+      <url>artifactregistry://us-west1-maven.pkg.dev/lindsaysmith-cicd-bugbash-1/maven</url>
+    </snapshotRepository>
+    <repository>
+      <id>artifact-registry-release</id>
+      <url>artifactregistry://us-west1-maven.pkg.dev/lindsaysmith-cicd-bugbash-1/maven-release</url>
+    </repository>
+  </distributionManagement>
+
+  <repositories>
+    <repository>
+      <id>artifact-registry</id>
+      <url>artifactregistry://us-west1-maven.pkg.dev/lindsaysmith-cicd-bugbash-1/maven</url>
+      <releases>
+        <enabled>false</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </repository>
+    <repository>
+      <id>artifact-registry-release</id>
+      <url>artifactregistry://us-west1-maven.pkg.dev/lindsaysmith-cicd-bugbash-1/maven-release</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
+        
+  </repositories>
 
   <modules>
     <module>appengine-standard-java8/helloworld</module>
@@ -173,6 +208,13 @@ limitations under the License.
 
       </plugins>
     </pluginManagement>
+    <extensions>
+      <extension>
+        <groupId>com.google.cloud.artifactregistry</groupId>
+        <artifactId>artifactregistry-maven-wagon</artifactId>
+        <version>2.0.0</version>
+      </extension>
+    </extensions>
   </build>
 
   <profiles>
